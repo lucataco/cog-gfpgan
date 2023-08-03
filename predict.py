@@ -1,9 +1,3 @@
-# flake8: noqa
-# This file is used for deploying replicate models
-# running: cog predict -i img=@inputs/whole_imgs/10045.png -i version='v1.4' -i scale=2
-# push: cog push r8.im/tencentarc/gfpgan
-# push (backup): cog push r8.im/xinntao/gfpgan
-
 import os
 
 os.system('python setup.py develop')
@@ -138,8 +132,6 @@ class Predictor(BasePredictor):
 
             if img_mode == 'RGBA':  # RGBA images should be saved in png format
                 extension = 'png'
-            # save_path = f'output/out.{extension}'
-            # cv2.imwrite(save_path, output)
             out_path = Path(tempfile.mkdtemp()) / f'out.{extension}'
             cv2.imwrite(str(out_path), output)
         except Exception as error:
